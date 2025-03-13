@@ -1,3 +1,4 @@
+#include "../includes/player.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -5,6 +6,9 @@ using namespace sf;
 
 int main() {
   RenderWindow window(VideoMode(1280, 720), "Topdownwindow");
+  window.setFramerateLimit(60);
+
+  Player player(640.0f, 360.0f);
 
   while (window.isOpen()) {
     Event event;
@@ -13,8 +17,10 @@ int main() {
         window.close();
     }
 
-    window.clear();
+    player.handleInput();
 
+    window.clear();
+    player.render(window);
     window.display();
   }
 
