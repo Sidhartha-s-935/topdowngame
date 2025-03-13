@@ -1,0 +1,36 @@
+# Ignore build files
+/build/
+/bin/
+*.o
+*.out
+*.exe
+*.dll
+*.a
+*.so
+*.dylib
+*.obj
+*.pdb
+*.idb
+*.ncb
+*.suo
+*.sdf
+*.swp
+
+# Ignore CMake cache files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+
+# Ignore VS Code settings and logs
+.vscode/
+*.code-workspace
+
+# Ignore SFML-related temporary files (if any)
+sfml-app
+sfml-app.dSYM/
+
+# Ignore logs and cache
+*.log
+*.tmp
+*.cache
