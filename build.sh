@@ -3,13 +3,16 @@
 # Set the build directory
 BUILD_DIR="build"
 
+# Set the path to the vcpkg toolchain file
+VCPKG_TOOLCHAIN_FILE="/home/notsus/vcpkg/scripts/buildsystems/vcpkg.cmake"
+
 # Create the build directory if it doesn't exist
 if [ ! -d "$BUILD_DIR" ]; then
   mkdir "$BUILD_DIR"
 fi
 
-# Run CMake to generate build files
-cmake -B "$BUILD_DIR" -G "Unix Makefiles"
+# Run CMake to generate build files with vcpkg toolchain
+cmake -B "$BUILD_DIR" -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE="$VCPKG_TOOLCHAIN_FILE" -DCMAKE_PREFIX_PATH="/home/notsus/vcpkg/installed/x64-linux"
 
 # Check if CMake succeeded
 if [ $? -ne 0 ]; then

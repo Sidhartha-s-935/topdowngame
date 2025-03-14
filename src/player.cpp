@@ -1,13 +1,15 @@
 #include "../includes/player.hpp"
+#include <iostream>
 
-Player::Player(float startX, float startY) : speed(300.0f) {
-  shape.setSize(sf::Vector2f(50.0f, 50.0f));
+Player::Player(float x, float y, float size, float speed) : speed(speed) {
+  shape.setSize(sf::Vector2f(size, size));
   shape.setFillColor(sf::Color::Green);
-  shape.setPosition(startX, startY);
+  shape.setPosition(x, y);
 }
 
-void Player::handleInput() {
-  sf::Vector2f movement(0.0f, 0.0f);
+void Player::handleInput(const Map &map) {
+  sf::Vector2f originalPosition = shape.getPosition();
+  sf::Vector2f movement(0.f, 0.f);
 
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     movement.y -= speed;
@@ -18,9 +20,18 @@ void Player::handleInput() {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     movement.x += speed;
 
-  shape.move(movement * (1.0f / 60.0f));
+  shape.move(movement);
+
+  if (map.isColliding(shape.getGlobalBounds())) {
+    std::cout << "Collision Detected\n";
+    shape.setPosition(originalPosition); // Revert movement
+  }
 }
 
-void Player::update(float deltaTime) {}
+void Player::update(const Map &map) { handleInput(map); }
 
-void Player::render(sf::RenderWindow &window) { window.draw(shape); }
+void Player::draw(sf::RenderWindow &window) { window.draw(shape); }
+
+sf::FloatRect Player::getBounds() const { return shape.getGlobalBounds(); }
+
+sf::Vector2f Player::getPosition() const { return shape.getPosition(); }
