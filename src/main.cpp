@@ -34,7 +34,7 @@ int main() {
   window.setFramerateLimit(60);
   sf::View view(sf::FloatRect(0.f, 0.f, 1280.f, 720.f));
 
-  Player player(640.0f, 390.0f, 20.0f,
+  Player player(640.0f, 500.0f, 20.0f,
                 10.f); // Spawn player in the middle of the screen
   Map map("assets/Home.tmx", "assets/HomeInteriors.png",
           32.0f); // Replace paths with your files

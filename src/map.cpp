@@ -1,7 +1,7 @@
+
 #include "../includes/map.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <ostream>
 #include <sstream>
 #include <tinyxml2.h>
 
@@ -35,15 +35,16 @@ Map::Map(const std::string &tmxFilePath, const std::string &tilesetPath,
 
   int tileCounter = 0;
 
+  // Process each layer in the TMX file
   for (XMLElement *layerElement = mapElement->FirstChildElement("layer");
        layerElement != nullptr;
        layerElement = layerElement->NextSiblingElement("layer")) {
 
     std::string layerName = layerElement->Attribute("name");
+    // Narrow down collidable layers to only those intended to block movement.
     bool isCollidable =
-        (layerName == "bounding walls" || layerName == "Floor objects above" ||
-         layerName == "Floor objects" || layerName == "wall object above" ||
-         layerName == " wall objects" || layerName == "inner walls");
+        (layerName == "bounding walls" || layerName == "inner walls" ||
+         layerName == "wall objects");
 
     XMLElement *dataElement = layerElement->FirstChildElement("data");
     const char *encodedData = dataElement->GetText();
@@ -65,10 +66,10 @@ Map::Map(const std::string &tmxFilePath, const std::string &tilesetPath,
       if (tileID == 0)
         continue; // Empty tile, skip rendering
 
-      int tu = (tileID - 1) %
-               (tilesetTexture.getSize().x / static_cast<int>(tileSize));
-      int tv = (tileID - 1) /
-               (tilesetTexture.getSize().x / static_cast<int>(tileSize));
+      // Calculate the tile’s texture coordinates and position
+      int tilesPerRow = tilesetTexture.getSize().x / static_cast<int>(tileSize);
+      int tu = (tileID - 1) % tilesPerRow;
+      int tv = (tileID - 1) / tilesPerRow;
 
       int x = (i % width) * tileSize;
       int y = (i / width) * tileSize;
@@ -93,10 +94,10 @@ Map::Map(const std::string &tmxFilePath, const std::string &tilesetPath,
       quad[3].texCoords = sf::Vector2f(tu * tileSize, (tv + 1) * tileSize);
 
       if (isCollidable) {
-        // Store the collision rectangle
+        // Only add a collision rectangle if the layer is meant to be
+        // collidable.
         collisionRects.emplace_back(x, y, tileSize, tileSize);
       }
-
       tileCounter++;
     }
   }
@@ -109,7 +110,6 @@ void Map::scaleToFit(const sf::RenderWindow &window) {
 
   float scaleX = static_cast<float>(windowSize.x) / mapBounds.width;
   float scaleY = static_cast<float>(windowSize.y) / mapBounds.height;
-
   float scale = std::min(scaleX, scaleY);
 
   for (size_t i = 0; i < vertices.getVertexCount(); ++i) {
