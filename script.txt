@@ -1,0 +1,124 @@
+<PROLOGUE>
+
+<SCENE> 2025 March: Present <SCENE>
+
+<CHARACTERS> MC <CHARACTERS>
+
+<SCENE > 
+
+<TEXT Renders in black screen>
+
+It's been a week since I woke up. A week since the doctors told me I was in a coma. A week since they said my memories are... damaged. Selective amnesia, they called it. I don't remember the accident. I don't remember the months leading up to it. All I know is... she's gone. And no one can tell me where.
+
+<Text renders out>
+
+<visuals fade out to MC's home>
+
+*MC is standing at a corner staring at his wife's portrait*
+
+Player: "I can't keep doing this. Staring at the same photos, over and over. It’s all fragments... Pieces of a life I can barely remember"
+
+*MC walks to the other end of the room towards a glowing device shaped like an tablet*
+
+Player: *reaches out, fingers tracing the cold, metallic surface of the machine*
+        *clicks and clacks as types in a date* 
+        "If my memories are still out there, scattered like broken glass... then I’ll find them. One piece at a time."
+
+*Presses the button the screen fades into a blinding white light*
+
+<MC's home fade out>
+
+<SCENE 1>
+
+<PROLOGUE>
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<LEVEL 1>
+
+<SCENE> 2023 December: Past (Day of Marriage) <SCENE>
+
+<CHARACTERS>
+  MC
+  WIFE
+  Friends 1,2,3
+  Parents of wife
+  Priest
+<CHARACTERS>
+
+<SCENE>
+
+<Text Render in black screen>
+
+A beautifully decorated wedding hall, warm golden lights and flowers draped elegantly over the walls. The air is filled with the mingling scents of roses and expensive cologne. Laughter and chatter resonate all around.
+
+<Text Renders out>
+
+<Visuals fade to marriage hall>
+
+*MC is standing at the entrance of the hall*
+
+*The player moves forward, various guests nodding and congratulating him*
+
+Wife’s Father: "Ah! The man of the hour. Congratulations, son. You’ve made our daughter the happiest woman today."
+
+Wife’s Mother: "Welcome to the family. Take good care of her, alright?"
+
+MC: "I will. I promise"
+
+*The MC gets moving*
+
+(WIFE's friends whispering as the player is far away):
+
+ Friend 1: "Did you hear? She’s still... you know... after everything?"
+
+ Friend 2: "Shh! What if someone hears?"
+
+ Friend 3: "It’s her life. If she wants to keep that a secret... well, it's her choice."
+
+*As the MC get's near, they stop gossiping and congratulate the MC*
+
+ Friend 1: "Congratulations! You two are such a beautiful couple."
+
+ Friend 2: "Yes! Wishing you both a lifetime of happiness."
+
+ Friend 3: "Best wishes!"
+
+MC: Um. yeh thanks I really appreciate it 
+
+*MC continues moving forward*
+
+*MC catches sight of WIFE on the altar and approaches her*
+
+WIFE: "Took you long enough huh? Thought you would leave me hanging at the last moment"
+
+MC: "As if"
+
+*Ceremony begins*
+
+PRIEST: "Do you, WIFE, take this man to be your lawfully wedded husband, to have and to hold, in sickness and in health, for better or for worse, till death do you part?"
+
+WIFE: "I do"
+
+PRIEST: "And do you, MC, take this woman to be your lawfully wedded wife, to have and to hold, in sickness and in health, for better or for worse, till death do you part?"
+
+MC: "I do"
+
+*Screen fades to black Text renders*
+
+They exchange rings, their hands shaking slightly and they share their first kiss as a married couple, The world seems to glow brighter, the cheers of the guests like muffled echoes of joy.
+
+*Screen Fades to black text renders out*
+
+<SCENE>
+
+<LEVEL 1>
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
