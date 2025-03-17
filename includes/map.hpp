@@ -11,14 +11,19 @@ public:
       float tileSize);
   void render(sf::RenderWindow &window);
   bool isColliding(const sf::FloatRect &playerBounds) const;
-  void scaleToFit(const sf::RenderWindow &window);
   sf::FloatRect getMapBounds() const;
+  float getScale() const;
 
 private:
+  void scaleToFit(const sf::RenderWindow &window);
+  
+  float tileSize;
+  float scale;
   sf::Texture tilesetTexture;
   sf::VertexArray vertices;
+  sf::VertexArray scaledVerticesForRendering;
+  std::vector<sf::FloatRect> originalCollisionRects;
   std::vector<sf::FloatRect> collisionRects;
-  float tileSize;
 };
 
-#endif // MAP_HPP
+#endif
