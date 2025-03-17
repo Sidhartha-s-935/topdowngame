@@ -1,4 +1,3 @@
-
 #include "../includes/map.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -10,7 +9,7 @@ using namespace std;
 
 Map::Map(const std::string &tmxFilePath, const std::string &tilesetPath,
          float tileSize)
-    : tileSize(tileSize) {
+    : tileSize(tileSize), scale(1.0f) {
 
   if (!tilesetTexture.loadFromFile(tilesetPath)) {
     std::cerr << "Failed to load tileset texture!" << std::endl;
@@ -44,7 +43,7 @@ Map::Map(const std::string &tmxFilePath, const std::string &tilesetPath,
     // Narrow down collidable layers to only those intended to block movement.
     bool isCollidable =
         (layerName == "bounding walls" || layerName == "inner walls" ||
-         layerName == "wall objects");
+         layerName == "wall objects" || layerName == "Floor objects");
 
     XMLElement *dataElement = layerElement->FirstChildElement("data");
     const char *encodedData = dataElement->GetText();
@@ -66,7 +65,7 @@ Map::Map(const std::string &tmxFilePath, const std::string &tilesetPath,
       if (tileID == 0)
         continue; // Empty tile, skip rendering
 
-      // Calculate the tile’s texture coordinates and position
+      // Calculate the tile's texture coordinates and position
       int tilesPerRow = tilesetTexture.getSize().x / static_cast<int>(tileSize);
       int tu = (tileID - 1) % tilesPerRow;
       int tv = (tileID - 1) / tilesPerRow;
@@ -94,13 +93,15 @@ Map::Map(const std::string &tmxFilePath, const std::string &tilesetPath,
       quad[3].texCoords = sf::Vector2f(tu * tileSize, (tv + 1) * tileSize);
 
       if (isCollidable) {
-        // Only add a collision rectangle if the layer is meant to be
-        // collidable.
-        collisionRects.emplace_back(x, y, tileSize, tileSize);
+        // Store original unscaled collision rectangles
+        originalCollisionRects.emplace_back(x, y, tileSize, tileSize);
       }
       tileCounter++;
     }
   }
+
+  // Initialize collisionRects with copies of the original rects
+  collisionRects = originalCollisionRects;
 }
 
 void Map::scaleToFit(const sf::RenderWindow &window) {
@@ -110,11 +111,24 @@ void Map::scaleToFit(const sf::RenderWindow &window) {
 
   float scaleX = static_cast<float>(windowSize.x) / mapBounds.width;
   float scaleY = static_cast<float>(windowSize.y) / mapBounds.height;
-  float scale = std::min(scaleX, scaleY);
+  scale = std::min(scaleX, scaleY);
 
-  for (size_t i = 0; i < vertices.getVertexCount(); ++i) {
-    vertices[i].position *= scale;
+  // Scale the vertices for rendering
+  sf::VertexArray scaledVertices = vertices;
+  for (size_t i = 0; i < scaledVertices.getVertexCount(); ++i) {
+    scaledVertices[i].position *= scale;
   }
+
+  // Update the collision rectangles using the same scale
+  collisionRects.clear();
+  for (const auto &rect : originalCollisionRects) {
+    sf::FloatRect scaledRect(rect.left * scale, rect.top * scale,
+                             rect.width * scale, rect.height * scale);
+    collisionRects.push_back(scaledRect);
+  }
+
+  // Store the scaled vertices for rendering
+  scaledVerticesForRendering = scaledVertices;
 }
 
 void Map::render(sf::RenderWindow &window) {
@@ -122,7 +136,7 @@ void Map::render(sf::RenderWindow &window) {
 
   sf::RenderStates states;
   states.texture = &tilesetTexture;
-  window.draw(vertices, states);
+  window.draw(scaledVerticesForRendering, states);
 }
 
 bool Map::isColliding(const sf::FloatRect &playerBounds) const {
@@ -134,7 +148,10 @@ bool Map::isColliding(const sf::FloatRect &playerBounds) const {
 }
 
 sf::FloatRect Map::getMapBounds() const {
-  float mapWidth = vertices.getBounds().width;
-  float mapHeight = vertices.getBounds().height;
+  // Return the scaled map bounds
+  float mapWidth = vertices.getBounds().width * scale;
+  float mapHeight = vertices.getBounds().height * scale;
   return sf::FloatRect(0.f, 0.f, mapWidth, mapHeight);
 }
+
+float Map::getScale() const { return scale; }
