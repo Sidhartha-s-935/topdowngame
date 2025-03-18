@@ -7,8 +7,7 @@
 
 class Map {
 public:
-  Map(const std::string &tmxFilePath, const std::string &tilesetPath,
-      float tileSize);
+  Map(const std::string &tmxFilePath, const std::string &tilesetPath, float tileSize);
   void render(sf::RenderWindow &window);
   bool isColliding(const sf::FloatRect &playerBounds) const;
   sf::FloatRect getMapBounds() const;

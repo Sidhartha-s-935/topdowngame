@@ -1,7 +1,9 @@
 #include "../includes/map.hpp"
 #include "../includes/player.hpp"
+#include "../includes/textBox.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Window/WindowStyle.hpp>
 #include <iostream>
 
 using namespace sf;
@@ -12,7 +14,7 @@ void updateCamera(sf::View &view, const Player &player, const Map &map,
   sf::Vector2u windowSize = window.getSize();
 
   // Set a zoom factor (smaller value = more zoomed in)
-  const float zoomFactor = 0.7f; // Adjust this value as needed
+  const float zoomFactor = 0.4f; // Adjust this value as needed
 
   // Apply zoom by resizing the view
   float viewWidth = windowSize.x * zoomFactor;
@@ -54,8 +56,13 @@ void updateCamera(sf::View &view, const Player &player, const Map &map,
 }
 
 int main() {
-  RenderWindow window(VideoMode(1280, 720), "Topdownwindow");
+  RenderWindow window(VideoMode(1920, 1080), "Topdownwindow" , sf::Style::Fullscreen);
   window.setFramerateLimit(60);
+  TextBox diag;
+	std::vector<std::string> d = {
+		"Hi i am gay jbikaskksksksksksksksksksksksksksksksksksksksksszmkmzkamzkmakmzakmzkmakmzakmazkmakzmakmzkamzkmakmzakmazkmakzmamkzm akmzkmamakmakma kmakmkamzkmmakzmakmakmakmakmzkamkmk sjwhjwhwjh" , "Hi i am valan" , "Hi i am Tamil Dasan" 
+	};
+  diag.loadDialogues(d);
   sf::View view(sf::FloatRect(0.f, 0.f, 1280.f, 720.f));
 
   // Create the map first
@@ -69,7 +76,7 @@ int main() {
   sf::FloatRect mapBounds = map.getMapBounds();
   float centerX = mapBounds.left + mapBounds.width / 2.0f;
   float centerY = mapBounds.top + mapBounds.height / 2.0f;
-  Player player(centerX, centerY + 100, 20.0f, 5.0f);
+  Player player(centerX - 200, centerY + 100, 20.0f, 5.0f);
 
   // Scale the player to match the map's scale
   player.setScale(map.getScale());
@@ -122,8 +129,11 @@ int main() {
     // Render everything
     window.clear();
     map.render(window);
-    player.draw(window);
+    player.draw(window); 
+    diag.draw(window);
 
+
+		diag.handleInput();
     // Display FPS (optional)
     static sf::Font font;
     static bool fontLoaded = false;
