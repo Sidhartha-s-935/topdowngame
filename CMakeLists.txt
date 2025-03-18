@@ -18,4 +18,3 @@ add_executable(Game ${SOURCES})
 
 # Link SFML libraries
 target_link_libraries(Game PRIVATE sfml-graphics sfml-audio tinyxml2)
-
