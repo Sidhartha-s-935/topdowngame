@@ -5,7 +5,8 @@
 #include <SFML/Window/WindowStyle.hpp>
 #include <iostream>
 
-int main() {
+int main()
+{
   // Create the main window
   sf::RenderWindow window(sf::VideoMode(1920, 1080), "Topdownwindow",
                           sf::Style::Fullscreen);
@@ -22,13 +23,15 @@ int main() {
   sf::Clock clock;
 
   // Main game loop
-  while (window.isOpen() && !stateManager.isEmpty()) {
+  while (window.isOpen() && !stateManager.isEmpty())
+  {
     // Calculate delta time
     float deltaTime = clock.restart().asSeconds();
 
     // Get current state
     GameState *currentState = stateManager.getCurrentState();
-    if (currentState == nullptr) {
+    if (currentState == nullptr)
+    {
       break;
     }
 

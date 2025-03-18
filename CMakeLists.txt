@@ -10,8 +10,8 @@ find_package(tinyxml2 CONFIG REQUIRED)
 # Include directories
 include_directories(${SFML_INCLUDE_DIR})
 
-# Source files - Load all .cpp files in src directory
-file(GLOB SOURCES "src/*.cpp")
+# Source files
+file (GLOB SOURCES "src/*.cpp")
 
 # Add executable
 add_executable(Game ${SOURCES})
