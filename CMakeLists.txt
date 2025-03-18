@@ -10,16 +10,11 @@ find_package(tinyxml2 CONFIG REQUIRED)
 # Include directories
 include_directories(${SFML_INCLUDE_DIR})
 
-# Source files
-set(SOURCES
-    src/main.cpp
-    src/player.cpp
-    src/map.cpp
-)
+# Source files - Load all .cpp files in src directory
+file(GLOB SOURCES "src/*.cpp")
 
 # Add executable
 add_executable(Game ${SOURCES})
 
 # Link SFML libraries
 target_link_libraries(Game PRIVATE sfml-graphics sfml-audio tinyxml2)
-

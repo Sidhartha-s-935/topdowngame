@@ -1,8 +1,8 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#include <SFML/Graphics.hpp>
 #include "../includes/map.hpp"
+#include <SFML/Graphics.hpp>
 
 class Player {
 public:
@@ -13,9 +13,9 @@ public:
   sf::Vector2f getPosition() const;
   void setPosition(float x, float y);
   void setScale(float scale);
+  void handleInput(const Map &map);
 
 private:
-  void handleInput(const Map &map);
   sf::RectangleShape shape;
   float speed;
 };
