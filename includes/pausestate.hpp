@@ -1,10 +1,10 @@
-#pragma once
+#ifndef PAUSE_STATE 
+
+#define PAUSE_STATE
 #include "gamestate.hpp"
 #include "button.hpp"
 #include <vector>
-
-class GameStateManager;
-class MainMenuState; // Forward declaration
+#include "../includes/gamestateman.hpp"
 
 class PauseState : public GameState {
 private:
@@ -21,3 +21,7 @@ public:
     void update(float deltaTime) override;
     void render(sf::RenderWindow& window) override;
 };
+
+
+
+#endif // !

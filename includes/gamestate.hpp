@@ -1,5 +1,6 @@
-// gamestate.hpp - Ensure proper virtual destructor
-#pragma once
+#ifndef GAME_STATE
+#define GAME_STATE
+ 
 #include <SFML/Graphics.hpp>
 #include <memory>
 
@@ -10,3 +11,6 @@ public:
     virtual void update(float deltaTime) = 0;
     virtual void render(sf::RenderWindow& window) = 0;
 };
+
+
+#endif
