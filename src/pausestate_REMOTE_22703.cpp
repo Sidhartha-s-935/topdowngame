@@ -1,17 +1,8 @@
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/Graphics/Rect.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/System/Vector2.hpp>
-#include <SFML/Window/Event.hpp>
-#include <SFML/Window/Keyboard.hpp>
 #include "../includes/pausestate.hpp"
 #include "../includes/gamestateman.hpp"
 #include "../includes/mainmenustate.hpp"
 
 #include <iostream>
-#include <memory>
-#include "../includes/pausestate.hpp"
-#include "../includes/mainmenustate.hpp"
 
 using namespace std;
 
@@ -147,6 +138,3 @@ void PauseState::render(sf::RenderWindow &window)
         button.render(window);
     }
 }
-
-
-
