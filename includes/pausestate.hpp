@@ -1,10 +1,10 @@
-#pragma once
+#ifndef PAUSE_STATE 
+
+#define PAUSE_STATE
 #include "gamestate.hpp"
 #include "button.hpp"
 #include <vector>
-
-class GameStateManager;
-class MainMenuState; // Forward declaration
+#include "../includes/gamestateman.hpp"
 
 enum class Transition
 {
@@ -34,3 +34,7 @@ public:
     void update(float deltaTime) override;
     void render(sf::RenderWindow &window) override;
 };
+
+
+
+#endif // !

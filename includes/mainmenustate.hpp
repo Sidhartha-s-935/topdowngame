@@ -1,10 +1,11 @@
-#pragma once
+#ifndef MAIN_MENU_STATE
+#define MAIN_MENU_STATE
+
 #include "gamestate.hpp"
 #include "button.hpp"
+#include "gamestateman.hpp"
 #include <vector>
 
-class GameStateManager;
-class GameplayState; // Forward declaration
 
 class MainMenuState : public GameState {
 private:
@@ -20,3 +21,5 @@ public:
     void update(float deltaTime) override;
     void render(sf::RenderWindow& window) override;
 };
+
+#endif 
