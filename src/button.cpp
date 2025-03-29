@@ -6,7 +6,7 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Mouse.hpp>
 
-Button::Button(float x , float y , float width , float height , sf::Font* font , std::string& text , const sf::Color& color , const sf::Color& hoverColor , const sf::Color& activeColor , const sf::Color& textColor , std::function<void()> callback) {
+Button::Button(float x , float y , float width , float height , sf::Font* font , const  std::string& text , const sf::Color& color , const sf::Color& hoverColor , const sf::Color& activeColor , const sf::Color& textColor , std::function<void()> callback) {
 	this->font = font;
 	this->idleColor = idleColor;
 	this->hoverColor = hoverColor;
