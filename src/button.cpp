@@ -1,12 +1,14 @@
-
 #include "../includes/button.hpp"
+#include <iostream>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Mouse.hpp>
 
-Button::Button(float x , float y , float width , float height , sf::Font* font , const  std::string& text , const sf::Color& color , const sf::Color& hoverColor , const sf::Color& activeColor , const sf::Color& textColor , std::function<void()> callback) {
+Button::Button(float x , float y , float width , float height , sf::Font* font , const char* text , 
+	       const sf::Color& color , const sf::Color& hoverColor , const sf::Color& activeColor , const sf::Color& textColor , 
+	       std::function<void()> callback) {
 	this->font = font;
 	this->idleColor = idleColor;
 	this->hoverColor = hoverColor;
@@ -25,7 +27,7 @@ Button::Button(float x , float y , float width , float height , sf::Font* font ,
 	this->text.setFont(*font);
 	this->text.setString(text);
 	this->text.setFillColor(textColor);
-	this->text.setCharacterSize(24);
+	this->text.setCharacterSize(48);
 
 	sf::FloatRect textRect = this->text.getLocalBounds();
 
@@ -50,6 +52,7 @@ void Button::update(const sf::Vector2f& mousePos) {
 }
 
 void Button::handleEvent(const sf::Event& event , const sf::Vector2f & mousePos) {
+
 	if(event.type == sf::Event::MouseButtonPressed) {
 
 		if(event.mouseButton.button == sf::Mouse::Left) {

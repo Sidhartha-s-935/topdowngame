@@ -6,14 +6,10 @@
 #include <SFML/Window/Keyboard.hpp>
 #include "../includes/pausestate.hpp"
 #include "../includes/gamestateman.hpp"
-#include "../includes/mainmenustate.hpp"
 
 #include <iostream>
-#include <memory>
 #include "../includes/pausestate.hpp"
-#include "../includes/mainmenustate.hpp"
 
-using namespace std;
 
 PauseState::PauseState(GameStateManager *stateManager, sf::RenderWindow &window)
     : stateManager(stateManager), window(window)

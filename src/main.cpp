@@ -1,27 +1,32 @@
 #include "../includes/gamestateman.hpp"
 #include "../includes/mainmenustate.hpp"
 #include "../includes/pausestate.hpp"
+#include "../includes/levelmenustate.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Window/Event.hpp>
 #include <SFML/Window/WindowStyle.hpp>
 #include <iostream>
+#include <memory>
 
 int main()
 {
   // Create the main window
-  sf::RenderWindow window(sf::VideoMode(1920, 1080), "Topdownwindow",
-                          sf::Style::Fullscreen);
+  sf::RenderWindow window(sf::VideoMode(1920, 1080), "Topdownwindow",sf::Style::Fullscreen);
   window.setFramerateLimit(60);
 
   // Create the game state manager
   GameStateManager stateManager;
 
   // Push initial state (main menu)
-  stateManager.pushState(
-      std::make_unique<MainMenuState>(&stateManager, window));
+  /*stateManager.pushState(std::make_unique<MainMenuState>(&stateManager, window));*/
+
+	stateManager.pushState(std::make_unique<LevelMenu>(&stateManager , window));
+
 
   // Initialize a clock for delta time calculation
   sf::Clock clock;
+
 
   // Main game loop
   while (window.isOpen() && !stateManager.isEmpty())
