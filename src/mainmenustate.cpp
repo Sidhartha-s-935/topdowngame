@@ -13,14 +13,14 @@
 MainMenuState::MainMenuState(GameStateManager* stateManeger , sf::RenderWindow& window) : stateManager(stateManeger) {
 	/*this->stateManager = stateManager;*/
 
-	if(this->font.loadFromFile("assets/font.otf")) {
+	if(!this->font.loadFromFile("assets/font.otf")) {
 		std::cerr << "Failed to load font! in main menu"  << '\n';
 	}
 
 	this->title.setFont(font);
 	this->title.setFillColor(sf::Color::White);
 	this->title.setCharacterSize(64);
-	this->title.setString("GAME TITLE");
+	this->title.setString("Rewind : A Love Lost");
 
 	sf::FloatRect titleRect = this->title.getLocalBounds();
 	this->title.setOrigin(titleRect.left + titleRect.width / 2.0f , titleRect.top + titleRect.height / 2.0f);
@@ -34,13 +34,13 @@ MainMenuState::MainMenuState(GameStateManager* stateManeger , sf::RenderWindow& 
 
 	this->buttons.emplace_back(
 		window.getSize().x / 2.0f - buttonWidth / 2.0f , buttonY , buttonWidth , buttonHeight , 
-		&this->font , PlayGame , sf::Color(100 , 100 , 100) , sf::Color(150 , 150 , 150) , 
+		&this->font , "PlayGame", sf::Color(100 , 100 , 100) , sf::Color(150 , 150 , 150) , 
 		sf::Color(70 , 70 ,70) , sf::Color::White , [this , &window] () {
 			this->stateManager->pushState(std::make_unique<GameplayState>(this->stateManager , window));
 		}
 	);
 
-	this->buttons.emplace_back( window.getSize().x / 2.0f - buttonWidth / 2.0f , buttonY + buttonHeight + spacing , buttonWidth , buttonHeight , &font , QuitGame , sf::Color(100 , 100 , 100) , sf::Color(150 , 150 , 150) , sf::Color(70 , 70 , 70) , sf::Color::White , [&window]() {
+	this->buttons.emplace_back( window.getSize().x / 2.0f - buttonWidth / 2.0f , buttonY + buttonHeight + spacing , buttonWidth , buttonHeight , &font , "QuitGame", sf::Color(100 , 100 , 100) , sf::Color(150 , 150 , 150) , sf::Color(70 , 70 , 70) , sf::Color::White , [&window]() {
 		window.close();
 	}  );
 }
