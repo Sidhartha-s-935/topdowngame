@@ -1,4 +1,6 @@
-#include "../includes/levelmenustate.hpp"
+#include "../../includes/statesH/levelmenustate.hpp"
+#include "../../includes/statesH/gameplaystate.hpp"
+#include "../../includes/statesH/mainmenustate.hpp"
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -6,17 +8,19 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Mouse.hpp>
 #include <iostream>
+#include <memory>
 #include <string>
 
 			   
-LevelButtons::LevelButtons(float posx  , float posy ,  float w ,float h , sf::Font* font , std::string &levelName ){
+LevelButtons::LevelButtons(GameStateManager* stateManager , float posx  , float posy ,  float w ,float h , sf::Font* font , std::string &levelName){
+	this->stateManager = stateManager;
 	this->width = w;
 	this->height = h;
 	this->shape.setPosition(sf::Vector2f(posx , posy));
 	this->shape.setSize(sf::Vector2f(w , h));
 	this->shape.setFillColor(sf::Color::White);
 
-	this->state = this->LevelButtonState::NotComplete;
+	this->state = this->LevelButtonState::NotComplete; 
 
 	this->LevelName.setFont(*font);
 	this->LevelName.setCharacterSize(48);
@@ -29,7 +33,7 @@ LevelButtons::LevelButtons(float posx  , float posy ,  float w ,float h , sf::Fo
 	this->LevelName.setPosition(posx + w / 2.0f , posy + h / 2.0f);
 };
 
-void LevelButtons::handleInput(sf::Event& event , sf::Vector2f& mousePos) {
+void LevelButtons::handleInput(sf::Event& event , sf::Vector2f& mousePos , sf::RenderWindow& window) {
 	if(event.type == sf::Event::MouseButtonPressed) {
 		if(event.mouseButton.button == sf::Mouse::Left) {
 			if(this->shape.getGlobalBounds().contains(mousePos)) this->isPressed = true;
@@ -40,6 +44,10 @@ void LevelButtons::handleInput(sf::Event& event , sf::Vector2f& mousePos) {
 		if(event.mouseButton.button == sf::Mouse::Left) {
 			if(this->isPressed && this->shape.getGlobalBounds().contains(mousePos)) {
 				std::cout << "level no :" << this->LevelName.getString().toAnsiString()  << " button is clicked" << '\n';
+				std::string LevelName = this->LevelName.getString().toAnsiString();
+				std::cout << LevelName << '\n';
+				if(LevelName == "TUTORIAL LEVEL") this->stateManager->pushState(std::make_unique<GameplayState>(this->stateManager , window)); 
+				else std::cout << "printing other levels" << '\n';
 			}
 
 			this->isPressed = false;
@@ -115,10 +123,13 @@ LevelMenu::LevelMenu(GameStateManager* stateManager , sf::RenderWindow& window) 
 	);	
 
 
-	for(int i = 0 ; i < 5 ; i++) {
+	for(int i = 0 ; i < 6 ; i++) {
 
 		std::string LevelName = "LEVEL" + std::to_string(i + 1);
-		LevelButtons lb(650.0f , window.getSize().y / 3.0f , 500.0f  , 500.0f  , &this->font , LevelName);
+		if(i == 0) LevelName = "TUTORIAL LEVEL";
+		LevelButtons lb(stateManager , 650.0f , window.getSize().y / 3.0f , 500.0f  , 500.0f  , &this->font , LevelName );
+
+		if(i == 0) lb.updateCompletionStatusToComplete();
 
 		this->levelButtons.push_back(lb);
 	}
@@ -152,7 +163,7 @@ void LevelMenu::handleInput(sf::RenderWindow& window) {
 			buttons.handleEvent(e , mousePos);
 		}
 
-		this->levelButtons[this->currIndex].handleInput(e , mousePos);
+		this->levelButtons[this->currIndex].handleInput(e , mousePos , window);
 
 
 	} 

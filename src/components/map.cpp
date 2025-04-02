@@ -1,6 +1,4 @@
-
-
-#include "../includes/map.hpp"
+#include "../../includes/componentsH/map.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/PrimitiveType.hpp>
 #include <SFML/Graphics/Rect.hpp>

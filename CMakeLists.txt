@@ -11,10 +11,15 @@ find_package(tinyxml2 CONFIG REQUIRED)
 include_directories(${SFML_INCLUDE_DIR})
 
 # Source files
-file (GLOB SOURCES "src/*.cpp")
+file(GLOB_RECURSE SOURCES 
+    "src/*.cpp" 
+    "src/components/*.cpp" 
+    "src/states/*.cpp"
+)
 
 # Add executable
 add_executable(Game ${SOURCES})
 
+target_include_directories(Game PRIVATE includes)
 # Link SFML libraries
 target_link_libraries(Game PRIVATE sfml-graphics sfml-audio tinyxml2)

@@ -2,7 +2,7 @@
 #define LEVEL_MENU
 
 #include "gamestate.hpp"
-#include "button.hpp"
+#include "../componentsH/button.hpp"
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
@@ -15,20 +15,21 @@ struct LevelButtons{
 	sf::Text LevelName;
 	sf::RectangleShape shape;
 	bool isPressed;
+	GameStateManager* stateManager;
 	enum LevelButtonState{
 		NotComplete = 0 , Complete
 	};
 
 	LevelButtonState state;
 
-	LevelButtons(float posx , float posy , float w , float h , sf::Font* font , std::string&  levelName );
+	LevelButtons(GameStateManager* stateManager , float posx , float posy , float w , float h , sf::Font* font , std::string&  levelName);
 
 	void render(sf::RenderWindow& window , LevelButtons &lb) ;
 
 	void updateCompletionStatusToComplete();
 	void updateCompletionStatusToInComplete();
 
-	void handleInput(sf::Event& event , sf::Vector2f& mousePos);
+	void handleInput(sf::Event& event , sf::Vector2f& mousePos , sf::RenderWindow& window);
 
 
 };

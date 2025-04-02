@@ -1,7 +1,7 @@
 #pragma once
 #include "gamestate.hpp"
-#include "map.hpp"
-#include "player.hpp"
+#include "../componentsH/map.hpp"
+#include "../componentsH/player.hpp"
 #include <SFML/Graphics.hpp>
 
 class GameStateManager;

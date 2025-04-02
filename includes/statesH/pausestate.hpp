@@ -2,10 +2,9 @@
 
 #define PAUSE_STATE
 #include "gamestate.hpp"
-#include "button.hpp"
+#include "../componentsH/button.hpp"
 #include <vector>
-#include "../includes/gamestateman.hpp"
-
+#include "gamestateman.hpp"
 enum class Transition
 {
     None,
