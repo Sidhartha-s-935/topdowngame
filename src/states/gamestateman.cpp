@@ -1,5 +1,5 @@
-#include "../includes/gamestateman.hpp"
 #include <iostream>
+#include "../../includes/statesH/gamestateman.hpp"
 
 void GameStateManager::pushState(std::unique_ptr<GameState> state) {
   this->states.push(std::move(state));

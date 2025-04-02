@@ -1,7 +1,7 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#include "../includes/map.hpp"
+#include "./map.hpp"
 #include <SFML/Graphics.hpp>
 
 class Player {

@@ -1,11 +1,10 @@
-#include "../includes/button.hpp"
-#include <iostream>
+#include <iostream>  
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Mouse.hpp>
-
+#include "../../includes/componentsH/button.hpp"
 Button::Button(float x , float y , float width , float height , sf::Font* font , const char* text , 
 	       const sf::Color& color , const sf::Color& hoverColor , const sf::Color& activeColor , const sf::Color& textColor , 
 	       std::function<void()> callback) {

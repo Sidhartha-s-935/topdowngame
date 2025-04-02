@@ -1,5 +1,5 @@
-#include "../includes/textBox.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
+#include "../../includes/componentsH/textBox.hpp"
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <sstream>

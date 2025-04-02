@@ -1,10 +1,9 @@
-
-#include "../includes/mainmenustate.hpp"
-#include "../includes/gamestateman.hpp"
+#include "../../includes/statesH/levelmenustate.hpp"
+#include "../../includes/statesH/mainmenustate.hpp"
+#include "../../includes/statesH/gamestateman.hpp"
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include "../includes/gameplaystate.hpp"
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
 #include <iostream>
@@ -36,7 +35,7 @@ MainMenuState::MainMenuState(GameStateManager* stateManeger , sf::RenderWindow& 
 		window.getSize().x / 2.0f - buttonWidth / 2.0f , buttonY , buttonWidth , buttonHeight , 
 		&this->font , "PlayGame", sf::Color(100 , 100 , 100) , sf::Color(150 , 150 , 150) , 
 		sf::Color(70 , 70 ,70) , sf::Color::White , [this , &window] () {
-			this->stateManager->pushState(std::make_unique<GameplayState>(this->stateManager , window));
+			this->stateManager->pushState(std::make_unique<LevelMenu>(this->stateManager , window));
 		}
 	);
 

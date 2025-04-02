@@ -1,5 +1,5 @@
 
-#include "../includes/player.hpp"
+#include "../../includes/componentsH/player.hpp"
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Keyboard.hpp>

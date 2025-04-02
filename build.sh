@@ -4,7 +4,7 @@
 BUILD_DIR="build"
 
 # Set the path to the vcpkg toolchain file
-VCPKG_TOOLCHAIN_FILE="/home/nayeem/vcpkg/scripts/buildsystems/vcpkg.cmake"
+# VCPKG_TOOLCHAIN_FILE="/home/nayeem/vcpkg/scripts/buildsystems/vcpkg.cmake"
 
 # Create the build directory if it doesn't exist
 if [ ! -d "$BUILD_DIR" ]; then

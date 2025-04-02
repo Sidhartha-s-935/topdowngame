@@ -1,6 +1,6 @@
-#include "../includes/gameplaystate.hpp"
-#include "../includes/gamestateman.hpp"
-#include "../includes/pausestate.hpp"
+#include "../../includes/statesH/gameplaystate.hpp"
+#include "../../includes/statesH/gamestate.hpp"
+#include "../../includes/statesH/pausestate.hpp"
 #include <algorithm> // For std::clamp
 #include <cmath>
 #include <iostream>

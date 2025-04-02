@@ -4,11 +4,9 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
-#include "../includes/pausestate.hpp"
-#include "../includes/gamestateman.hpp"
-
+#include "../../includes/statesH/gamestate.hpp"
+#include "../../includes/statesH/pausestate.hpp"
 #include <iostream>
-#include "../includes/pausestate.hpp"
 
 
 PauseState::PauseState(GameStateManager *stateManager, sf::RenderWindow &window)
