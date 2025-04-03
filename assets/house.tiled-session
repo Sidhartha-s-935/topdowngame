@@ -3,18 +3,26 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Home.tmx",
+    "activeFile": "",
     "expandedProjectPaths": [
         "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "Hall.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 275.99999999999994,
+                "y": 486.6666666666666
+            }
+        },
         "Home.tmx": {
             "scale": 2,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 278,
-                "y": 281
+                "x": 395.5,
+                "y": 310
             }
         },
         "Home.tsx": {
@@ -25,15 +33,13 @@
     "last.imagePath": "/home/notsus/projects/topdowngame/assets",
     "map.height": 20,
     "map.lastUsedFormat": "tmx",
-    "map.width": 30,
+    "map.width": 90,
     "openFiles": [
-        "Home.tsx",
-        "Home.tmx"
     ],
     "project": "house.tiled-project",
     "recentFiles": [
-        "Home.tsx",
-        "Home.tmx"
+        "Home.tmx",
+        "Home.tsx"
     ],
     "tileset.lastUsedFormat": "tsx"
 }

@@ -8,7 +8,7 @@
 GameplayState::GameplayState(GameStateManager *stateManager,
                              sf::RenderWindow &window)
     : stateManager(stateManager),
-      map("assets/Home.tmx", "assets/HomeInteriors.png", 32.0f), window(window),
+      map("assets/Hall.tmx", "assets/HomeInteriors.png", 32.0f), window(window),
       player(0.0f, 0.0f, 20.0f, 5.0f) { // Initialize player with default values
 
   // Initialize view
